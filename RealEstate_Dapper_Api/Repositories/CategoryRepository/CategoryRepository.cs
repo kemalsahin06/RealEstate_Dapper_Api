@@ -17,7 +17,7 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
         {
             string query = "insert into Category (CategoryName,CategoryStatus) values (@categoryName,@categoryStatus)";
             var parametrs = new DynamicParameters();
-            parametrs.Add("@categoryName",categoryDto.CategoryName);
+            parametrs.Add("@categoryName", categoryDto.CategoryName);
             parametrs.Add("@categoryStatus", true);
 
             using (var connection = _context.CreateConnection())
@@ -27,23 +27,37 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             }
         }
 
-        public async  void DeleteCategory(int id)
+        public async void DeleteCategory(int id)
         {
             string query = "Delete From Category Where CategoryID=@categoryID";
             var parametrs = new DynamicParameters();
             parametrs.Add("@categoryID", id);
-            using (var connection = _context.CreateConnection()){
-                await connection.ExecuteAsync(query,parametrs);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parametrs);
             }
         }
 
         public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
         {
-            string query = "Select * From Category"; 
+            string query = "Select * From Category";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultCategoryDto>(query);
                 return values.ToList();
+            }
+        }
+
+        public async Task<GetByIDCategoryDto> GetCategory(int id)
+        {
+            string query = "Select * From Category where CategoryID=@categoryID";
+            var parametrs = new DynamicParameters();
+            parametrs.Add("@categoryID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIDCategoryDto>(query,parametrs); // buda geriye deger döndürdügüm i.in böyle bir kullanış yaptım
+                return values;
+
             }
         }
 
@@ -56,7 +70,7 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             parametrs.Add("@categoryID", categoryDto.CategoryId);
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query,parametrs);
+                await connection.ExecuteAsync(query, parametrs);
             }
         }
     }
