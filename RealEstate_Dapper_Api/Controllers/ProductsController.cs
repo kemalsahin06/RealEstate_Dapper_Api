@@ -29,5 +29,11 @@ namespace RealEstate_Dapper_Api.Controllers
             var values = await _productRepository.GetAllProductWithCategoryAsync();
             return Ok(values);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> CreateProduct()
+        //{
+        //    return vie
+        //}
     }
 }
