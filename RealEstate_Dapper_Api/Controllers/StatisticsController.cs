@@ -26,5 +26,44 @@ namespace RealEstate_Dapper_Api.Controllers
         {
             return Ok(_statisticsRepository.ActiveEmployeeCount());
         }
+
+
+        [HttpGet("ApartmenCount")]
+        public IActionResult ApartmenCount()
+        {
+            return Ok(_statisticsRepository.ApartmenCount());
+        }
+
+        [HttpGet("AverangeProductPriceByRent")]
+        public IActionResult AverangeProductPriceByRent()
+        {
+            return Ok(_statisticsRepository.AverangeProductPriceByRent());
+        }
+
+
+        [HttpGet("AverangeProductPriceBySale")]
+        public IActionResult AverangeProductPriceBySale()
+        {
+            return Ok(_statisticsRepository.AverangeProductPriceBySale());
+        }
+
+
+        [HttpGet("AverangeRoomCount")]
+        public IActionResult AverangeRoomCount()
+        {
+            return Ok(_statisticsRepository.AverangeRoomCount());
+        }
+
+        [HttpGet("CategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            return Ok(_statisticsRepository.CategoryCount());
+        }
+
+        [HttpGet("CityNameByMaxProductCount")]
+        public IActionResult CityNameByMaxProductCount()
+        {
+            return Ok(_statisticsRepository.CityNameByMaxProductCount());
+        }
     }
 }

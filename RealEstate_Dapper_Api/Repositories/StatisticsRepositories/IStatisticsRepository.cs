@@ -9,15 +9,15 @@
         int ApartmenCount();
         String EmpoloyeeNameByMaxProductCount();
         String CategoryNameByMaxProductCount();
-        decimal AverangeProductByRent();
-        decimal AverangeProductBySale();
+        decimal AverangeProductPriceByRent();
+        decimal AverangeProductPriceBySale();
         string CityNameByMaxProductCount();
         int DifferentCityCount();
         decimal LastProductPrice();
         string NewestBuildingYear();
         string OldestBuildingYear();
         int ActiveEmployeeCount();
-
+        int AverangeRoomCount();
 
     }
 }
