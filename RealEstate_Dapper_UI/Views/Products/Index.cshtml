@@ -23,6 +23,7 @@
                                 <th scope="col">Sil</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sitede Gör</th>
+                                <th scope="col">Günün Fırsatı</th>
 
                             </tr>
                         </thead>
@@ -40,7 +41,18 @@
                                     <td><a href="/Products/DeleteProduct/@item.productID" class="btn btn-outline-danger">Sil</a></td>
                                     <td><a href="/Products/UpdateProduct/@item.productID" class="btn btn-outline-success">Güncelle</a></td>
                                     <td><a href="/Products/ProductDetail/@item.productID" class="btn btn-outline-primary">Sitede Gör</a></td>
+                                    <td>
+                                        @if (item.DealOfTheDay == true)
+                                        {
+                                            <a href="/Products/ProductDetail/@item.productID" class="btn btn-outline-secondary">Pasif Yap</a>
+                                        
+                                        }
+                                        @if (item.DealOfTheDay == false)
+                                        {
+                                            <a href="/Products/ProductDetail/@item.productID" class="btn btn-outline-warning">Aktif Yap</a>
 
+                                        }
+                                    </td>
                                 </tr>
                             }
 
