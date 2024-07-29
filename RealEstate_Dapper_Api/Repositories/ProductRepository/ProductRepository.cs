@@ -33,6 +33,16 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             }
         }
 
+        public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync()
+        {
+            string query = "SELECT TOP(5)   Product.ProductID,   Product.Title,  Product.Price,  Product.City,    Product.District,    Product.ProductCategory,    Category.CategoryName,  Product.AdvertisementDate FROM    Product INNER JOIN     Category ON     Product.ProductCategory = Category.CategoryID  WHERE    Product.Type = 'Kiralık' ORDER BY     Product.ProductID DESC;";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultLast5ProductWithCategoryDto>(query);
+                return values.ToList();
+            }
+        }
+
         public async void ProductDealOfTheDayStatusChangeFalse(int id)
         {
 

@@ -2,7 +2,7 @@
 
 namespace RealEstate_Dapper_UI.Controllers
 {
-    public class DasboardControllercs : Controller
+    public class DasboardController : Controller
     {
         public IActionResult Index()
         {
