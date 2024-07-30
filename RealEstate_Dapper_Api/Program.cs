@@ -1,3 +1,4 @@
+using RealEstate_Dapper_Api.Hubs;
 using RealEstate_Dapper_Api.Models.DapperContext;
 using RealEstate_Dapper_Api.Repositories.BottomGridRepositories;
 using RealEstate_Dapper_Api.Repositories.CategoryRepository;
@@ -37,6 +38,24 @@ builder.Services.AddTransient<IContactRepository, ContactRepository>();
 
 builder.Services.AddTransient<IToDoListRepositories, ToDoListRepositories>();
 
+// signalR KULLANIRKEN DÝGER KULLANICILARA ketki izni veriyoruz
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+
+builder.Services.AddHttpClient();// bunuda ekledim
+builder.Services.AddSignalR();
+
+
 
 
 
@@ -54,10 +73,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy"); // signal ar ý burda çagýrdýk
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+// SignalR Hub mapping
+app.MapHub<SignalRHub>("/Hubs/SignalRHub");// signalr yapýlandýrma direkt istekte bulunmak için
 
 app.Run();
