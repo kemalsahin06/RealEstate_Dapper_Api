@@ -4,6 +4,8 @@ using RealEstate_Dapper_Api.Repositories.BottomGridRepositories;
 using RealEstate_Dapper_Api.Repositories.CategoryRepository;
 using RealEstate_Dapper_Api.Repositories.ContactRepositories;
 using RealEstate_Dapper_Api.Repositories.EmployeeRepositories;
+using RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRepositories.CardRepositories;
+using RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRepositories.StatisticRepositories;
 using RealEstate_Dapper_Api.Repositories.PopularLocationRepositories;
 using RealEstate_Dapper_Api.Repositories.ProductRepository;
 using RealEstate_Dapper_Api.Repositories.ServiceRepository;
@@ -11,14 +13,15 @@ using RealEstate_Dapper_Api.Repositories.StatisticsRepositories;
 using RealEstate_Dapper_Api.Repositories.TestimonialRepositories;
 using RealEstate_Dapper_Api.Repositories.ToDoListRepositories;
 using RealEstate_Dapper_Api.Repositories.WhoWeAreRepository;
+using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddTransient<Context>();
-builder.Services.AddTransient<ICategoryRepository,CategoryRepository>();
-builder.Services.AddTransient<IProductRepository,ProductRepository>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 builder.Services.AddTransient<IWhoWeAreDetailRepository, WhoWeAreDetailRepository>();
 
@@ -37,6 +40,13 @@ builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
 
 builder.Services.AddTransient<IToDoListRepositories, ToDoListRepositories>();
+
+builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
+
+builder.Services.AddTransient<IChartRepository, ChartRepository>();
+
+
+
 
 // signalR KULLANIRKEN DÝGER KULLANICILARA ketki izni veriyoruz
 
