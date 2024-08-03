@@ -1,7 +1,7 @@
 ﻿@using RealEstate_Dapper_UI.Dtos.ProductDtos
 @model List<ResultProductAdvertListWithCategoryByEmployeeDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ActiveAdverts";
     Layout = "~/Areas/EstateAgent/Views/LayountEstateAgent/Index.cshtml";
     int count = 0;
 }
@@ -10,17 +10,18 @@
     <div class="row g-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Yayılladıgnız İlan  Listesi</h6>
+                <h6 class="mb-4">Aktif İlan Listesi</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col"> İlan Başlıgı</th>
+                                <th scope="col">İlan Başlığı</th>
                                 <th scope="col">Kategori</th>
                                 <th scope="col">Fiyat</th>
                                 <th scope="col">Tür</th>
                                 <th scope="col">Sil</th>
+                                <th scope="col">Pasif Yap</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sitede Gör</th>
                             </tr>
@@ -28,29 +29,24 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
+                                count++;
                                 <tr>
-                                    @count++;
                                     <th scope="row">@count</th>
                                     <td>@item.Title</td>
                                     <td>@item.CategoryName</td>
                                     <td>@item.Price</td>
                                     <td>@item.Type</td>
                                     <td><a href="/Products/DeleteProduct/@item.ProductID" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/Products/DeleteProduct/@item.ProductID" class="btn btn-outline-dark">Pasif Yap</a></td>
                                     <td><a href="/Products/UpdateProduct/@item.ProductID" class="btn btn-outline-success">Güncelle</a></td>
                                     <td><a href="/Products/ProductDetail/@item.ProductID" class="btn btn-outline-primary">Sitede Gör</a></td>
-                                    
                                 </tr>
                             }
-
-
                         </tbody>
-
                     </table>
-                    <td><a href="/Products/CreateProduct/" class="btn btn-outline-info">Yeni İlan Girişi</a></td>
-
+                    <a href="/Products/CreateProduct/" class="btn btn-outline-info">Yeni İlan Girişi</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

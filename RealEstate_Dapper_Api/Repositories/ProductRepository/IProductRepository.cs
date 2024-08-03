@@ -5,7 +5,8 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
     public interface IProductRepository
     {
         public Task<List<ResultProductDto>> GetAllProductAsync();
-        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsync(int id);
+        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByTrue(int id);
+        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByFalse(int id);
 
         Task<List<ResultProductWhitCategoryDto>> GetAllProductWithCategoryAsync();
         void ProductDealOfTheDayStatusChangeToTrue(int id);
@@ -13,6 +14,7 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
 
         Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync();
 
+        Task CreateProduct(CreateProductDto createProductDto);
 
     }
 }

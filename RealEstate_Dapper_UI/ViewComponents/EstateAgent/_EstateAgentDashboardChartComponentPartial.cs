@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RealEstate_Dapper_UI.Dtos.EstateAgentDtos;
 
 namespace RealEstate_Dapper_UI.ViewComponents.EstateAgent
 {
@@ -12,14 +13,14 @@ namespace RealEstate_Dapper_UI.ViewComponents.EstateAgent
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //var client = _httpClientFactory.CreateClient();
-            //var responseMessage = await client.GetAsync("https://localhost:44333/api/EstateAgentChart");
-            //if (responseMessage.IsSuccessStatusCode)
-            //{
-            //    var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //    var values = JsonConvert.DeserializeObject<List<ResultEstateAgentDashboardChartDto>>(jsonData);
-            //    return View(values);
-            //}
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:44346/api/EstateAgentChart/Get5CityForChart");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultEstateAgentDashboardChartDto>>(jsonData);
+                return View(values);
+            }
             return View();
         }
     }
