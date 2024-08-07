@@ -20,7 +20,7 @@ namespace RealEstate_Dapper_Api.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductList()
         {
-            var values =await _productRepository.GetAllProductAsync();
+            var values = await _productRepository.GetAllProductAsync();
             return Ok(values);
         }
 
@@ -79,13 +79,15 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok("İlan başarıyla eklendi");
         }
 
-        //[HttpGet("GetProductByProductId")]
-        //public async Task<IActionResult> GetProductByProductId(int id)
-        //{
-        //    var values = await _productRepository.GetProductByProductId(id);
-        //    return Ok(values);
-        //}
+        [HttpGet("GetProductByProductID")]
+        public async Task<IActionResult> GetProductByProductID(int id)
+        {
+            var values = await _productRepository.GetProductByProductID(id);
+            return Ok(values);
+        }
 
+
+  
         //[HttpGet("ResultProductWithSearchList")]
         //public async Task<IActionResult> ResultProductWithSearchList(string searchKeyValue, int propertyCategoryId, string city)
         //{

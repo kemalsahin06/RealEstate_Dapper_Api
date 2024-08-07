@@ -21,7 +21,7 @@
                     <input type="text" asp-for="title" class="form-control" />
                     <br />
                     <label>Kategori</label>
-                    @Html.DropDownListFor(x=>x.categoryID,(List<SelectListItem>)ViewBag.v,new {@class="form-control"})
+                    @Html.DropDownListFor(x=>x.ProductCategory,(List<SelectListItem>)ViewBag.v,new {@class="form-control"})
                     <br />
                     <label>Fiyat</label>
                     <input type="text" asp-for="title" class="form-control" />
@@ -33,7 +33,7 @@
                     <input type="text" asp-for="title" class="form-control" />
                     <br />
                     <label>İlan Açık Adresi</label>
-                    <textarea asp-for="Address" class="form-control" row="5"></textarea>
+                    <textarea asp-for="address" class="form-control" row="5"></textarea>
                     <br />
 
 
