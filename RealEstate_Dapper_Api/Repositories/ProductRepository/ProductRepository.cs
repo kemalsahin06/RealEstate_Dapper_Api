@@ -37,7 +37,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 await connection.ExecuteAsync(query, parameters);
             }
         }
-
         public async Task<List<ResultProductDto>> GetAllProductAsync()
         {
             string query = "Select * From Product";
@@ -47,7 +46,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
-
         public async Task<List<ResultProductWhitCategoryDto>> GetAllProductWithCategoryAsync()
         {
             string query = "Select ProductID,Title,Price,City, District, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay  From Product inner join category on Product.ProductCategory = Category.CategoryID";
@@ -57,7 +55,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
-
         public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync()
         {
             string query = "SELECT TOP(5)   Product.ProductID,   Product.Title,  Product.Price,  Product.City,    Product.District,    Product.ProductCategory,    Category.CategoryName,  Product.AdvertisementDate FROM    Product INNER JOIN     Category ON     Product.ProductCategory = Category.CategoryID  WHERE    Product.Type = 'Kiralık' ORDER BY     Product.ProductID DESC;";
@@ -67,7 +64,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
-
         public async Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByFalse(int id)
         {
             string query = "Select ProductID,Title,Price,City, District, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay  From Product inner join category on Product.ProductCategory = Category.CategoryID where EmployeeID =@employeeID and ProductStatus=0";
@@ -80,7 +76,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
-
         public async Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByTrue(int id)
         {
             string query = "Select ProductID,Title,Price,City, District, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay  From Product inner join category on Product.ProductCategory = Category.CategoryID where EmployeeID =@employeeID and ProductStatus=1";
@@ -93,7 +88,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
-
         public async Task<GetProductByProductIDDto> GetProductByProductID(int id)
         {
             string query = "Select ProductID,Title,Price,City, District,Description, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay , AdvertisementDate  From Product inner join category on Product.ProductCategory = Category.CategoryID where @ProductId=@productıd";
@@ -107,7 +101,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             }
            
         }
-
         public async Task<GetProductDetailByIdDto> GetProductDeyailByProductID(int id)
         {
             string query = "Select * From ProductDetails Where ProductId=@productId";
@@ -119,7 +112,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.FirstOrDefault();
             }
         }
-
         public async Task ProductDealOfTheDayStatusChangeFalse(int id)
         {
 
@@ -133,7 +125,6 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
 
             }
         }
-
         public async Task ProductDealOfTheDayStatusChangeToTrue(int id)
         {
 
@@ -147,6 +138,20 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
 
             }
 
+        }
+
+        public async Task<List<ResultProductWithSearchListDto>> ResultProductWithSearchList(string searchkeyValue, int propertyCategoryId, string city)
+        {
+            string query = "Select * From Product Where Title like '%" + searchkeyValue + "%' And ProductCategory=@propertyCategoryId And City=@city";
+            var parameters = new DynamicParameters();
+            //parameters.Add("@searchKeyValue", searchkeyValue);
+            parameters.Add("@propertyCategoryId", propertyCategoryId);
+            parameters.Add("@city", city);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductWithSearchListDto>(query, parameters);
+                return values.ToList();
+            }
         }
     }
 }

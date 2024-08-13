@@ -15,6 +15,7 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
         Task CreateProduct(CreateProductDto createProductDto);
         Task<GetProductByProductIDDto> GetProductByProductID(int id);
         Task<GetProductDetailByIdDto> GetProductDeyailByProductID(int id);
+        Task<List<ResultProductWithSearchListDto>> ResultProductWithSearchList(string searchkeyValue,int propertyCategoryId,string city);
 
     }
 }
