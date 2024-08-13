@@ -54,12 +54,12 @@ namespace RealEstate_Dapper_UI.Controllers
         {
             ViewBag.i = id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44333/api/Products/GetProductByProductId?id=" + id);
+            var responseMessage = await client.GetAsync("https://localhost:44346/api/Products/GetProductByProductID?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<ResultProductDtos>(jsonData);
 
             var client2 = _httpClientFactory.CreateClient();
-            var responseMessage2 = await client2.GetAsync("https://localhost:44333/api/ProductDetails/GetProductDetailByProductId?id=" + id);
+            var responseMessage2 = await client2.GetAsync("https://localhost:44346/api/ProductDetail/GetProductDetailByProductId?id=" + id);
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
             var values2 = JsonConvert.DeserializeObject<GetProductDetailByIdDto>(jsonData2);
             
@@ -71,7 +71,7 @@ namespace RealEstate_Dapper_UI.Controllers
             ViewBag.address = values.Address;
             ViewBag.type = values.Type;
             ViewBag.description = values.description;
-            ViewBag.slugUrl = values.SlugUrl;
+            //ViewBag.slugUrl = values.SlugUrl;
 
             ViewBag.bathCount = values2.bathCount;
             ViewBag.bedCount = values2.bedRoomCount;
@@ -91,8 +91,8 @@ namespace RealEstate_Dapper_UI.Controllers
 
             ViewBag.datediff = month / 30;
 
-            string slugFromTitle = CreateSlug(values.title);
-            ViewBag.slugUrl = slugFromTitle;
+           // string slugFromTitle = CreateSlug(values.title);
+           // ViewBag.slugUrl = slugFromTitle;
 
             return View();
         }
