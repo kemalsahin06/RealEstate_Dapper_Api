@@ -12,10 +12,12 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
         Task ProductDealOfTheDayStatusChangeToTrue(int id);
         Task ProductDealOfTheDayStatusChangeFalse(int id);
         Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync();
+        Task<List<ResultLast3ProductWithCategoryDto>> GetLast3ProductAsync();
         Task CreateProduct(CreateProductDto createProductDto);
         Task<GetProductByProductIDDto> GetProductByProductID(int id);
         Task<GetProductDetailByIdDto> GetProductDeyailByProductID(int id);
         Task<List<ResultProductWithSearchListDto>> ResultProductWithSearchList(string searchkeyValue,int propertyCategoryId,string city);
+        Task<List<ResultProductWhitCategoryDto>> GetProductByDealOfTheDayTrueWithCategoryAsync();
 
     }
 }

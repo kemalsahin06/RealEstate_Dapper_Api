@@ -55,6 +55,17 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
+
+        public async Task<List<ResultLast3ProductWithCategoryDto>> GetLast3ProductAsync()
+        {
+            string query = "SELECT TOP(3)   Product.ProductID, CoverImage, Description,   Product.Title,  Product.Price,  Product.City,    Product.District,    Product.ProductCategory,    Category.CategoryName,  Product.AdvertisementDate FROM    Product INNER JOIN     Category ON     Product.ProductCategory = Category.CategoryID  ORDER BY     Product.ProductID DESC;";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultLast3ProductWithCategoryDto>(query);
+                return values.ToList();
+            }
+        }
+
         public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync()
         {
             string query = "SELECT TOP(5)   Product.ProductID,   Product.Title,  Product.Price,  Product.City,    Product.District,    Product.ProductCategory,    Category.CategoryName,  Product.AdvertisementDate FROM    Product INNER JOIN     Category ON     Product.ProductCategory = Category.CategoryID  WHERE    Product.Type = 'Kiralık' ORDER BY     Product.ProductID DESC;";
@@ -88,6 +99,17 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
                 return values.ToList();
             }
         }
+
+        public async Task<List<ResultProductWhitCategoryDto>> GetProductByDealOfTheDayTrueWithCategoryAsync()
+        {
+            string query = "Select ProductID,Title,Price,City, District, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay  From Product inner join category on Product.ProductCategory = Category.CategoryID where DealOfTheDay=1";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductWhitCategoryDto>(query);
+                return values.ToList();
+            }
+        }
+
         public async Task<GetProductByProductIDDto> GetProductByProductID(int id)
         {
             string query = "Select ProductID,Title,Price,City, District,Description, Category.CategoryName , CoverImage,Type,Address , DealOfTheDay , AdvertisementDate  From Product inner join category on Product.ProductCategory = Category.CategoryID where @ProductId=@productıd";

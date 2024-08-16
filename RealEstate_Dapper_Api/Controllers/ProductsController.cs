@@ -89,24 +89,24 @@ namespace RealEstate_Dapper_Api.Controllers
 
 
         [HttpGet("ResultProductWithSearchList")]
-        public async Task<IActionResult> ResultProductWithSearchList(string searchKeyValue, int propertyCategoryId, string city)
+        public async Task<IActionResult> ResultProductWithSearchList(string searchKeyValue, string city, int propertyCategoryId)
         {
             var values = await _productRepository.ResultProductWithSearchList(searchKeyValue, propertyCategoryId, city);
             return Ok(values);
         }
 
-        //[HttpGet("GetProductByDealOfTheDayTrueWithCategory")]
-        //public async Task<IActionResult> GetProductByDealOfTheDayTrueWithCategory()
-        //{
-        //    var values = await _productRepository.GetProductByDealOfTheDayTrueWithCategoryAsync();
-        //    return Ok(values);
-        //}
+        [HttpGet("GetProductByDealOfTheDayTrueWithCategoryAsync")]
+        public async Task<IActionResult> GetProductByDealOfTheDayTrueWithCategory()
+        {
+            var values = await _productRepository.GetProductByDealOfTheDayTrueWithCategoryAsync();
+            return Ok(values);
+        }
 
-        //[HttpGet("GetLast3Product")]
-        //public async Task<IActionResult> GetLast3Product()
-        //{
-        //    var values = await _productRepository.GetLast3ProductAsync();
-        //    return Ok(values);
-        //}
+        [HttpGet("GetLast3Product")]
+        public async Task<IActionResult> GetLast3Product()
+        {
+            var values = await _productRepository.GetLast3ProductAsync();
+            return Ok(values);
+        }
     }
 }

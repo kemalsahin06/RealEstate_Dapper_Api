@@ -28,22 +28,17 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> PropertyListWithSearch(string searchKeyValue, int propertyCategoryId, string city)
+        public async Task<IActionResult> PropertyListWithSearch(string searchKeyValue, string city ,int propertyCategoryId )
         {
-            //ViewBag.searchKeyValue = TempData["searchKeyValue"];
-            ViewBag.v = TempData["word"];
-            ViewBag.y = TempData["word1"];
-            //ViewBag.propertyCategoryId = TempData["propertyCategoryId"];
-            //ViewBag.city = TempData["city"];
+            ViewBag.searchKeyValue = TempData["searchKeyValue"];
+            ViewBag.propertyCategoryId = TempData["propertyCategoryId"];
+            ViewBag.city = TempData["city"];
 
-            //searchKeyValue = TempData["searchKeyValue"].ToString();
-            //propertyCategoryId = int.Parse(TempData["propertyCategoryId"].ToString());
-            //city = TempData["city"].ToString();
+            searchKeyValue = TempData["searchKeyValue"].ToString();
+            propertyCategoryId = int.Parse(TempData["propertyCategoryId"].ToString());
+            city = TempData["city"].ToString();
             searchKeyValue = "Daire";
-            propertyCategoryId = 1;
-            city = "Trabzon";
-
-
+            
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:44346/api/Products/ResultProductWithSearchList?searchKeyValue={searchKeyValue}&propertyCategoryId={propertyCategoryId}&city={city}");
             if (responseMessage.IsSuccessStatusCode)
@@ -68,7 +63,7 @@ namespace RealEstate_Dapper_UI.Controllers
             var responseMessage2 = await client2.GetAsync("https://localhost:44346/api/ProductDetail/GetProductDetailByProductId?id=" + id);
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
             var values2 = JsonConvert.DeserializeObject<GetProductDetailByIdDto>(jsonData2);
-            
+
             ViewBag.productId = values.productID;
             ViewBag.title1 = values.title.ToString();
             ViewBag.price = values.price;
@@ -97,8 +92,8 @@ namespace RealEstate_Dapper_UI.Controllers
 
             ViewBag.datediff = month / 30;
 
-           // string slugFromTitle = CreateSlug(values.title);
-           // ViewBag.slugUrl = slugFromTitle;
+            // string slugFromTitle = CreateSlug(values.title);
+            // ViewBag.slugUrl = slugFromTitle;
 
             return View();
         }
