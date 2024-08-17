@@ -6,8 +6,8 @@ namespace RealEstate_Dapper_Api.Repositories.ContactRepositories
     {
         public Task<List<ResultContactDto>> GetAllContactAsync();
         public Task<List<Last4ContactResultDto>> GetLast4Contact();
-        void CreateContact(CreateContactDto createContactDto);
-        void DeleteContact(int id);
+        Task CreateContact(CreateContactDto createContactDto);
+        Task DeleteContact(int id);
         //void UpdateContact(UpdateEmployeeDto updateEmployeeDto);
         Task<GetByIDContactDto> GetContact(int id);
     }

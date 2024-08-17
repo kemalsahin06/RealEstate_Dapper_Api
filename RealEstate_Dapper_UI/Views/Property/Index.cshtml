@@ -17,7 +17,7 @@
 
 
                     <div class="col-lg-4 col-md-6 md-3">
-                        <a href="property-single.html">
+                        <a href="@Url.Action("PropertySingle","Property", new{slug=item.SlugUrl, id=item.productID})">
                             <div class="box16">
                                 <div class="rentext-listing-category"><span>@item.Type</span><span>@item.categoryName</span></div>
                                 <img class="img-fluid" style="height: 200px; width: 100%; object-fit: cover;" src="@item.coverImage" alt="">

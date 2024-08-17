@@ -1,22 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RealEstate_Dapper_UI.Dtos.CatageryDtos;
+using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.Controllers
 {
     public class DefaultController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apisettings;
 
-        public DefaultController(IHttpClientFactory httpClientFactory)
+        public DefaultController(IHttpClientFactory httpClientFactory,IOptions<ApiSettings> apisettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apisettings = apisettings.Value;
         }
 
+
+        // https://localhost:44346/api/Categories
         public async  Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var resposeMessage = await client.GetAsync("https://localhost:44346/api/Categories");
+            var resposeMessage = await client.GetAsync(_apisettings.BaseUrl+ "Categories");
             if (resposeMessage.IsSuccessStatusCode)
             {
                 var jsondata = await resposeMessage.Content.ReadAsStringAsync();
