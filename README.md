@@ -4,18 +4,29 @@ Bu proje, bir emlak yönetim sistemini geliştirmek amacıyla oluşturulmuştur.
 
 Özellikler:
 Emlak İlanları Yönetimi: İlan ekleme, güncelleme, silme ve görüntüleme.
+
 Kullanıcı Yetkilendirme: JWT ile güvenli kullanıcı girişi.
+
 SEO Uyumlu URL'ler: Slug sistemi ile SEO dostu URL yapıları.
+
 Veritabanı İlişkileri: Emlak ilanları ve kullanıcılar arasındaki ilişkiler SQL Server ile sağlanmıştır.
+
 Frontend: HTML, CSS ve JavaScript kullanılarak kullanıcı dostu arayüz tasarımı.
+
 Bu proje, modern web geliştirme yöntemlerini ve en iyi uygulamaları temel alarak geliştirildi ve emlak sektörüne yönelik bir çözüm sunmayı amaçlamaktadır.
 
 Kullanılan Teknolojiler:
+
 ASP.NET Core 8
+
 Dapper
+
 HTML, CSS, JavaScript
+
 JWT
+
 SQL Server
+
 ![image](https://github.com/user-attachments/assets/ca776732-2d0d-485e-a68a-c4d63856659f)
 ![image](https://github.com/user-attachments/assets/1301ad30-dabf-4357-8f3d-40c272863899)
 ![image](https://github.com/user-attachments/assets/2512a01b-6126-45c5-9a32-a65a5f44c147)
