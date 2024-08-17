@@ -1,4 +1,5 @@
-Real Estate Projesi
+Readl Estate Projesi
+
 Bu proje, bir emlak yönetim sistemini geliştirmek amacıyla oluşturulmuştur. ASP.NET Core 8 framework'ü üzerine inşa edilen bu web uygulaması, emlak ilanlarının yönetimi ve görüntülenmesi gibi temel işlevleri sunmaktadır. Projede Dapper ORM kullanılarak veri tabanı işlemleri optimize edilmiştir. Kullanıcı kimlik doğrulama işlemleri için JWT (JSON Web Token) kullanılmıştır ve veritabanı ilişkileri SQL Server üzerinden yönetilmektedir.
 
 Özellikler:
